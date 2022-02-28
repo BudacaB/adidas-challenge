@@ -1,4 +1,4 @@
-package com.adidas.publicservice.model;
+package com.adidas.subscriptionservice.model;
 
 import lombok.Getter;
 import lombok.Setter;

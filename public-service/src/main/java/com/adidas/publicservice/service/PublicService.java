@@ -1,6 +1,7 @@
 package com.adidas.publicservice.service;
 
-import com.adidas.publicservice.integration.ISubscriptionClient;
+import com.adidas.publicservice.exceptions.SubscriptionNotFoundException;
+import com.adidas.publicservice.integration.SubscriptionClient;
 import com.adidas.publicservice.model.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +10,15 @@ import org.springframework.stereotype.Service;
 public class PublicService implements IPublicService {
 
     @Autowired
-    ISubscriptionClient subscriptionClient;
+    private SubscriptionClient subscriptionClient;
 
     @Override
-    public Subscription getSubscriptionById(Long id) {
+    public Subscription getSubscriptionById(Long id) throws SubscriptionNotFoundException {
         return subscriptionClient.getSubscriptionById(id);
+    }
+
+    @Override
+    public Long createSubscription(Subscription subscription) {
+        return subscriptionClient.createSubscription(subscription);
     }
 }
