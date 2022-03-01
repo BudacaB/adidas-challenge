@@ -8,4 +8,5 @@ public interface IPublicService {
     Subscription getSubscriptionById(Long id) throws SubscriptionNotFoundException;
     Long createSubscription(Subscription subscription);
     Subscription[] getSubscriptions();
+    void cancelSubscription(Long id) throws SubscriptionNotFoundException;
 }

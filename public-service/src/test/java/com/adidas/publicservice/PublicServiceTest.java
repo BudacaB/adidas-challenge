@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 
 @SpringBootTest
 class PublicServiceTest {
@@ -54,5 +55,11 @@ class PublicServiceTest {
 		assertThat(publicService.getSubscriptions()[1].getFirstName()).isEqualTo("Bob");
 		assertThat(publicService.getSubscriptions()[0].getId()).isEqualTo(1L);
 		assertThat(publicService.getSubscriptions()[1].getId()).isEqualTo(2L);
+	}
+
+	@Test
+	void cancelSubscriptionNotFound() throws SubscriptionNotFoundException {
+		doThrow(new SubscriptionNotFoundException()).when(subscriptionClient).cancelSubscription(1L);
+		assertThrows(SubscriptionNotFoundException.class, () -> publicService.cancelSubscription(1L));
 	}
 }

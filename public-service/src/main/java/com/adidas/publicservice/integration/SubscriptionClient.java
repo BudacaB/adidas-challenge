@@ -28,4 +28,12 @@ public class SubscriptionClient {
     public Subscription[] getSubscriptions() {
         return restTemplate.getForObject(subscriptionServiceUrl + "/getSubscriptions", Subscription[].class);
     }
+
+    public void cancelSubscription(Long id) throws SubscriptionNotFoundException {
+        try {
+            restTemplate.delete(subscriptionServiceUrl + "/cancelSubscription/" + id);
+        } catch (Exception e) {
+            throw new SubscriptionNotFoundException();
+        }
+    }
 }

@@ -6,6 +6,8 @@ import com.adidas.publicservice.model.Subscription;
 import com.adidas.publicservice.service.IPublicService;
 import com.adidas.publicservice.validation.SubscriptionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,5 +34,11 @@ public class PublicServiceController {
     @GetMapping("/all")
     Subscription[] getSubscriptions() {
         return publicService.getSubscriptions();
+    }
+
+    @DeleteMapping()
+    ResponseEntity<?> cancelSubscription(@RequestParam Long id) throws SubscriptionNotFoundException {
+        publicService.cancelSubscription(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

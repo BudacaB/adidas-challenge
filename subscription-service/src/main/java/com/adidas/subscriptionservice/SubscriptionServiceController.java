@@ -5,6 +5,8 @@ import com.adidas.subscriptionservice.model.Subscription;
 import com.adidas.subscriptionservice.model.SubscriptionEntity;
 import com.adidas.subscriptionservice.service.ISubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +31,11 @@ public class SubscriptionServiceController {
     @GetMapping("getSubscriptions")
     List<SubscriptionEntity> getSubscriptions() {
         return subscriptionService.getSubscriptions();
+    }
+
+    @DeleteMapping("cancelSubscription/{id}")
+    ResponseEntity<?> cancelSubscription(@PathVariable Long id) throws SubscriptionNotFoundException {
+        subscriptionService.cancelSubscription(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

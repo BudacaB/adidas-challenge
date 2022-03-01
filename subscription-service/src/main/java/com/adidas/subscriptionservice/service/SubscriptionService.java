@@ -41,4 +41,13 @@ public class SubscriptionService implements ISubscriptionService {
     public List<SubscriptionEntity> getSubscriptions() {
         return subscriptionRepository.findAll();
     }
+
+    @Override
+    public void cancelSubscription(Long id) throws SubscriptionNotFoundException {
+        try {
+            subscriptionRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new SubscriptionNotFoundException();
+        }
+    }
 }

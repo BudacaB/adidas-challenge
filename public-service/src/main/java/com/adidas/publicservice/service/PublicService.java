@@ -26,4 +26,9 @@ public class PublicService implements IPublicService {
     public Subscription[] getSubscriptions() {
         return subscriptionClient.getSubscriptions();
     }
+
+    @Override
+    public void cancelSubscription(Long id) throws SubscriptionNotFoundException {
+        subscriptionClient.cancelSubscription(id);
+    }
 }

@@ -11,4 +11,5 @@ public interface ISubscriptionService {
     SubscriptionEntity getSubscriptionById(Long id) throws SubscriptionNotFoundException;
     Long createSubscription(Subscription subscription);
     List<SubscriptionEntity> getSubscriptions();
+    void cancelSubscription(Long id) throws SubscriptionNotFoundException;
 }
