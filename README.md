@@ -11,7 +11,7 @@
     - http://localhost:8080/swagger-ui.html - public-service
     - http://localhost:8081/swagger-ui.html - subscription-service
 - Use your favorite API platform (e.g. Postman) to send queries to the public-service
-- Keep an eye on the terminal running Docker to see the 'email' message pop up
+- Keep an eye on the terminal running Docker to see the 'email' message pop up when creating new subscriptions
 
 ## How to test
 
