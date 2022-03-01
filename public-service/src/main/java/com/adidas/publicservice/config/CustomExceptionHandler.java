@@ -19,4 +19,9 @@ public class CustomExceptionHandler {
     public ResponseEntity<?> handleInvalidEmailException(InvalidEmailException invalidEmailException) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid email");
     }
+
+//    @ExceptionHandler({Exception.class})
+//    public ResponseEntity<?> handleException(Exception exception) {
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("something went wrong");
+//    }
 }

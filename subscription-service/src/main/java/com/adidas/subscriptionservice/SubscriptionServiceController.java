@@ -7,6 +7,8 @@ import com.adidas.subscriptionservice.service.ISubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("subscription/v1/api/")
 public class SubscriptionServiceController {
@@ -22,5 +24,10 @@ public class SubscriptionServiceController {
     @PostMapping("createSubscription")
     Long createSubscription(@RequestBody Subscription subscription) {
         return subscriptionService.createSubscription(subscription);
+    }
+
+    @GetMapping("getSubscriptions")
+    List<SubscriptionEntity> getSubscriptions() {
+        return subscriptionService.getSubscriptions();
     }
 }

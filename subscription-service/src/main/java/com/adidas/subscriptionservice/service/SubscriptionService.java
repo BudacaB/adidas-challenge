@@ -8,6 +8,7 @@ import com.adidas.subscriptionservice.model.SubscriptionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,7 +22,7 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Override
     public SubscriptionEntity getSubscriptionById(Long id) throws SubscriptionNotFoundException {
-        Optional<SubscriptionEntity> subscriptionById = subscriptionRepository.getSubscriptionById(id);
+        Optional<SubscriptionEntity> subscriptionById = subscriptionRepository.findById(id);
         if (subscriptionById.isPresent()) {
             return subscriptionById.get();
         } else {
@@ -34,5 +35,10 @@ public class SubscriptionService implements ISubscriptionService {
         SubscriptionEntity subscriptionEntity = subscriptionAssembler.toSubscriptionEntity(subscription);
         subscriptionRepository.save(subscriptionEntity);
         return subscriptionEntity.getId();
+    }
+
+    @Override
+    public List<SubscriptionEntity> getSubscriptions() {
+        return subscriptionRepository.findAll();
     }
 }

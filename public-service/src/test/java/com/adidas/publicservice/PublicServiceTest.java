@@ -38,4 +38,21 @@ class PublicServiceTest {
 		assertThrows(SubscriptionNotFoundException.class, () -> publicService.getSubscriptionById(1L));
 	}
 
+	@Test
+	void getsSubscriptions() {
+		Subscription subscription1 = new Subscription();
+		subscription1.setId(1L);
+		subscription1.setFirstName("John");
+		Subscription subscription2 = new Subscription();
+		subscription2.setId(2L);
+		subscription2.setFirstName("Bob");
+		Subscription[] subscriptions = new Subscription[2];
+		subscriptions[0] = subscription1;
+		subscriptions[1] = subscription2;
+		doReturn(subscriptions).when(subscriptionClient).getSubscriptions();
+		assertThat(publicService.getSubscriptions()[0].getFirstName()).isEqualTo("John");
+		assertThat(publicService.getSubscriptions()[1].getFirstName()).isEqualTo("Bob");
+		assertThat(publicService.getSubscriptions()[0].getId()).isEqualTo(1L);
+		assertThat(publicService.getSubscriptions()[1].getId()).isEqualTo(2L);
+	}
 }

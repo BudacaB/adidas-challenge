@@ -11,5 +11,8 @@ public class SubscriptionValidator {
         if (subscription.getEmail() == null || subscription.getEmail().trim().isEmpty()) {
             throw new InvalidEmailException();
         }
+        //    --- other checks ---
     }
+
+//    --- other fields checks ---
 }

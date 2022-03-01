@@ -21,4 +21,9 @@ public class PublicService implements IPublicService {
     public Long createSubscription(Subscription subscription) {
         return subscriptionClient.createSubscription(subscription);
     }
+
+    @Override
+    public Subscription[] getSubscriptions() {
+        return subscriptionClient.getSubscriptions();
+    }
 }

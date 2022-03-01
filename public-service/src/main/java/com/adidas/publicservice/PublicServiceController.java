@@ -28,4 +28,9 @@ public class PublicServiceController {
         subscriptionValidator.isSubscriptionValid(subscription);
         return publicService.createSubscription(subscription);
     }
+
+    @GetMapping("/all")
+    Subscription[] getSubscriptions() {
+        return publicService.getSubscriptions();
+    }
 }

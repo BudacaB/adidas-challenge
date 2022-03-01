@@ -24,4 +24,8 @@ public class SubscriptionClient {
         HttpEntity<Subscription> request = new HttpEntity<>(subscription);
         return restTemplate.postForObject(subscriptionServiceUrl + "/createSubscription", request, Long.class);
     }
+
+    public Subscription[] getSubscriptions() {
+        return restTemplate.getForObject(subscriptionServiceUrl + "/getSubscriptions", Subscription[].class);
+    }
 }
