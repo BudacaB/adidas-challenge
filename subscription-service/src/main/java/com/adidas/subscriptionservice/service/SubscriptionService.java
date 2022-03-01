@@ -1,5 +1,6 @@
 package com.adidas.subscriptionservice.service;
 
+import com.adidas.subscriptionservice.MessagingIntegration.SubscriptionMessagingService;
 import com.adidas.subscriptionservice.data.SubscriptionRepository;
 import com.adidas.subscriptionservice.assembly.SubscriptionAssembler;
 import com.adidas.subscriptionservice.exceptions.SubscriptionNotFoundException;
@@ -13,6 +14,10 @@ import java.util.Optional;
 
 @Service
 public class SubscriptionService implements ISubscriptionService {
+
+    String topic = "email";
+    String broker = "tcp://127.0.0.1:1883";
+    SubscriptionMessagingService subscriptionMessagingService = new SubscriptionMessagingService(topic, broker);
 
     @Autowired
     private SubscriptionRepository subscriptionRepository;
@@ -34,6 +39,7 @@ public class SubscriptionService implements ISubscriptionService {
     public Long createSubscription(Subscription subscription) {
         SubscriptionEntity subscriptionEntity = subscriptionAssembler.toSubscriptionEntity(subscription);
         subscriptionRepository.save(subscriptionEntity);
+        subscriptionMessagingService.publish("Firstname: " + subscription.getFirstName() + ", Email: " + subscription.getEmail());
         return subscriptionEntity.getId();
     }
 

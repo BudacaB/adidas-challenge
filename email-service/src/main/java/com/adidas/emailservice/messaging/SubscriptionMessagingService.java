@@ -1,17 +1,18 @@
-package com.adidas.emailservice;
+package com.adidas.emailservice.messaging;
 
+import com.adidas.emailservice.service.EmailDispatchService;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 public class SubscriptionMessagingService {
 
-    private String topic;
-    private String broker;
+    private String topic = "";
+    private String broker = "";
+    private EmailDispatchService emailDispatchService = new EmailDispatchService();
 
     public SubscriptionMessagingService(String topic, String broker) {
         this.topic = topic;
@@ -42,6 +43,6 @@ public class SubscriptionMessagingService {
     }
 
     public void handleMessage(String message) {
-        System.out.println("message ---> " + message);
+        emailDispatchService.dispatchEmail(message);
     }
 }
