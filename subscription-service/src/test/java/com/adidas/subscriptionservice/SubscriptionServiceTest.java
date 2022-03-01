@@ -1,5 +1,6 @@
 package com.adidas.subscriptionservice;
 
+import com.adidas.subscriptionservice.data.SubscriptionRepository;
 import com.adidas.subscriptionservice.exceptions.SubscriptionNotFoundException;
 import com.adidas.subscriptionservice.model.SubscriptionEntity;
 import com.adidas.subscriptionservice.service.ISubscriptionService;
