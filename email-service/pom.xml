@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.adidas</groupId>
-	<artifactId>public-service</artifactId>
+	<artifactId>email-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>public-service</name>
+	<name>email-service</name>
 	<description>Demo project for Adidas</description>
 	<properties>
 		<java.version>11</java.version>
@@ -19,11 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
 		<dependency>
@@ -32,9 +28,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.4</version>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mqtt</artifactId>
+			<version>5.5.9</version>
 		</dependency>
 	</dependencies>
 
@@ -43,16 +39,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M5</version>
-				<configuration>
-					<includes>
-						<include>**/*Test.java</include>
-					</includes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

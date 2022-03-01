@@ -1,20 +1,19 @@
-package com.adidas.subscriptionservice;
+package com.adidas.emailservice;
 
-import com.adidas.subscriptionservice.MessagingIntegration.SubscriptionMessagingService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SubscriptionServiceApplication {
+public class EmailServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SubscriptionServiceApplication.class, args);
+		SpringApplication.run(EmailServiceApplication.class, args);
 
 		String topic = "email";
 		String broker = "tcp://127.0.0.1:1883";
 
 		SubscriptionMessagingService messageService = new SubscriptionMessagingService(topic, broker);
-		messageService.publish("New Message");
+		messageService.subscribe();
 	}
 
 }
