@@ -1,4 +1,4 @@
-# adidas-challenge
+# Adidas Challenge
 
 ## How to build
 
