@@ -1,0 +1,43 @@
+version: '3.4'
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - 1883:1883
+    configs:
+      - my_config
+    network_mode: host
+    restart: unless-stopped
+
+  public-service:
+    build: ./public-service
+    container_name: public-service
+    ports:
+      - 8080:8080
+    network_mode: host
+    restart: on-failure
+    depends_on:
+      - mosquitto
+
+  subscription-service:
+    build: ./subscription-service
+    container_name: subscription-service
+    ports:
+      - 8081:8081
+    network_mode: host
+    restart: on-failure
+    depends_on:
+      - mosquitto
+
+  email-service:
+    build: ./email-service
+    container_name: email-service
+    ports:
+      - 8082:8082
+    network_mode: host
+    restart: on-failure
+
+configs:
+  my_config:
+    file: ./mosquitto/config/mosquitto.conf
